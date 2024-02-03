@@ -1,15 +1,15 @@
 import { Router } from "express";
-import userModel from '../models/user.model.js'
+import cartModel from '../models/cart.model.js'
 
-export const userRouter = Router(); 
+export const cartRouter = Router(); 
 
-userRouter
+cartRouter
     .get('/', async (req, res) => {
         try {
-            const user = await userModel.find({})
+            const cart = await cartModel.find({})
             res.json({
                 status: 'success',
-                result: user,
+                result: cart
             })
             
         } catch (error) {
@@ -20,7 +20,7 @@ userRouter
     .post('/', async (req, res) => {
         try {
             const {body} = req
-            const result = await userModel.create(body)
+            const result = await cartModel.create(body)
             res.send({
                 status: 'success',
                 result
@@ -29,23 +29,23 @@ userRouter
             console.log(error)
         }
     })
-    .get('/:uid', async (req, res) => {
+    .get('/:cid', async (req, res) => {
         try {
-            res.send('get user by uid')
+            res.send('get cart')
         } catch (error) {
             console.log(error)            
         }
     })
-    .put('/:uid', async (req, res) => {
+    .put('/:cid', async (req, res) => {
         try {
-            res.send('put user by uid')
+            res.send('put cart')
         } catch (error) {
             console.log(error)        
         }
     })
-    .delete('/:uid', async (req, res) => {
+    .delete('/:cid', async (req, res) => {
         try {
-            res.send('delete user by uid')
+            res.send('delete cart')
         } catch (error) {
             console.log(error)
         
